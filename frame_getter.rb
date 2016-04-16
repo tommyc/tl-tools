@@ -18,11 +18,9 @@ year_dirs.each do |yd|
   Dir.chdir(yd)
   first_run = true
   month_dirs = Dir.glob('*')
-  puts "MONTH DIRS #{month_dirs}"
   month_dirs.each do |md|
     Dir.chdir(md)
     day_dirs = Dir.glob('*')
-    puts "DAY DIRS #{day_dirs}"
     day_dirs.each do |dd|
       Dir.chdir(dd)
       filez = Dir.glob('*.jpg')
