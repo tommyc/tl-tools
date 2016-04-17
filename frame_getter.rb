@@ -1,8 +1,11 @@
 #!/usr/bin/env ruby
 require 'exifr'
+require 'fileutils'
+require 'pry'
 
 SOURCE_DIR = '/Volumes/MediaBackup/MediaLibrary/Projects/ApartmentTimeLapse'
-DESTINATION_DIR = '.'
+#SOURCE_DIR = 'media'
+DESTINATION_DIR = '/Users/tommy/Projects/timelapse/Images2/'
 
 Dir.chdir(SOURCE_DIR)
 
@@ -11,6 +14,8 @@ CURRENT_DIR = Dir.pwd
 first_run = false
 curr_hr = nil
 prev_hr = nil
+
+counter = 0
 
 year_dirs = Dir.glob('*')
 year_dirs.each do |yd|
@@ -23,12 +28,21 @@ year_dirs.each do |yd|
     day_dirs = Dir.glob('*')
     day_dirs.each do |dd|
       Dir.chdir(dd)
-      filez = Dir.glob('*.jpg')
+      filez = Dir.glob('*.{jpg,exr,png,tiff }')
       filez.each do |f|
+        #name, ext = f.split('.')
+        name = 'image'
+        ext = f.split('.').last
         exif_info = EXIFR::JPEG.new(f)
         curr_hr = exif_info.date_time.hour
-        if exif_info.date_time.min.between?(0, 7) && curr_hr != prev_hr
-          puts "EXIF DATE #{f} - #{exif_info.date_time}"
+        if curr_hr == 12
+          if exif_info.date_time.min.between?(0, 7) && curr_hr != prev_hr
+
+            new_file = DESTINATION_DIR + name + '-' + (sprintf '%06d', counter) + '.' + ext
+            puts "EXIF DATE #{f} - #{exif_info.date_time}"
+            FileUtils.cp(f, new_file)
+            counter += 1
+          end
         end
         prev_hr = exif_info.date_time.hour
       end
