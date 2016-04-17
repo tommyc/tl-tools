@@ -3,10 +3,10 @@ require 'exifr'
 require 'fileutils'
 require 'pry'
 
-SOURCE_DIR = '/Volumes/MediaBackup/MediaLibrary/Projects/ApartmentTimeLapse'
+SOURCE_DIR = '/Volumes/Media/MediaLibrary/Projects/ApartmentTimeLapse/'
 #SOURCE_DIR = 'media'
-DESTINATION_DIR = '/Users/tommy/Projects/timelapse/Images2/'
-
+#DESTINATION_DIR = '/Users/tommy/Projects/timelapse/Images2/'
+DESTINATION_DIR = '/Volumes/ScaryRaid/Projects/apt_timelapse/Images2/'
 Dir.chdir(SOURCE_DIR)
 
 CURRENT_DIR = Dir.pwd
@@ -35,7 +35,7 @@ year_dirs.each do |yd|
         ext = f.split('.').last
         exif_info = EXIFR::JPEG.new(f)
         curr_hr = exif_info.date_time.hour
-        if curr_hr == 12
+        if curr_hr == 14
           if exif_info.date_time.min.between?(0, 7) && curr_hr != prev_hr
 
             new_file = DESTINATION_DIR + name + '-' + (sprintf '%06d', counter) + '.' + ext
