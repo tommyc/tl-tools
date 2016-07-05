@@ -1,12 +1,10 @@
 #!/usr/bin/env ruby
 require 'exifr'
 require 'fileutils'
-require 'pry'
 
-SOURCE_DIR = '/Volumes/Media/MediaLibrary/Projects/ApartmentTimeLapse/'
-#SOURCE_DIR = 'media'
-#DESTINATION_DIR = '/Users/tommy/Projects/timelapse/Images2/'
-DESTINATION_DIR = '/Volumes/ScaryRaid/Projects/apt_timelapse/Images2/'
+SOURCE_DIR = '/Volumes/Media/MediaLibrary/Projects/ApartmentTimeLapse'
+DESTINATION_DIR = '/Users/tommy/Projects/timelapse/images/'
+
 Dir.chdir(SOURCE_DIR)
 
 CURRENT_DIR = Dir.pwd
@@ -14,7 +12,7 @@ CURRENT_DIR = Dir.pwd
 first_run = false
 curr_hr = nil
 prev_hr = nil
-
+hr_range = [13, 14, 15, 16]
 counter = 0
 
 year_dirs = Dir.glob('*')
@@ -35,11 +33,11 @@ year_dirs.each do |yd|
         ext = f.split('.').last
         exif_info = EXIFR::JPEG.new(f)
         curr_hr = exif_info.date_time.hour
-        if curr_hr == 14
-          if exif_info.date_time.min.between?(0, 7) && curr_hr != prev_hr
-
-            new_file = DESTINATION_DIR + name + '-' + (sprintf '%06d', counter) + '.' + ext
-            puts "EXIF DATE #{f} - #{exif_info.date_time}"
+        iso = exif_info.iso_speed_ratings
+        if hr_range.include?(curr_hr)
+          if exif_info.date_time.min.between?(0, 7) && curr_hr != prev_hr && iso == 100
+            new_file = DESTINATION_DIR + name + '-' + "#{curr_hr}" + '-' + (sprintf '%06d', counter) + '.' + ext
+            puts "FILE:#{f} - EXIF DATE:#{exif_info.date_time} ISO:#{iso}"
             FileUtils.cp(f, new_file)
             counter += 1
           end
