@@ -1,9 +1,11 @@
 # A sample Gemfile
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
 gem 'exifr'
 
 group :development do
+  gem 'guard'
+  gem 'guard-rspec'
   gem 'pry'
 end
 
