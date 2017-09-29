@@ -20,19 +20,14 @@ RSpec.describe AppConfig do
     context 'with arguments' do
       options = { iso: 100, shutter: 125, format: 'exr' }
       subject = AppConfig.new(options)
-      # it 'responds to accessors created from options' do
-      #   options.each_key do |key|
-      #     expect(subject).to respond_to(key.to_sym)
-      #   end
-      # end
+
       options.each do |key, val|
-        puts "KEY #{key}"
         it "responds to #{key} and had the correct value of #{val}" do
           expect(subject).to respond_to(key.to_sym)
           expect(subject.send(key)).to eq(options[key.to_sym])
         end
       end
-      it 'overrides an pre-defined option' do
+      it 'overrides an existing option' do
         expect(subject.format). to eql('exr')
       end
     end
