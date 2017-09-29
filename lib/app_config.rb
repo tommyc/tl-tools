@@ -1,13 +1,14 @@
 require 'yaml'
 
 class AppConfig # :nodoc:
-  attr_reader :source, :destination, :format
+  attr_reader :source, :destination, :input, :output
 
   def initialize(options = {})
     config = YAML.load_file('config/config.yml')
     @source = config['source']
     @destination = config['destination']
-    @format = 'jpg'
+    @output = 'jpg'
+    @input = 'jpg'
     process_options(options) unless options.empty?
   end
 

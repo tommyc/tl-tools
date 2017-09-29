@@ -13,12 +13,15 @@ RSpec.describe AppConfig do
       it 'should have a destination' do
         expect(subject).to respond_to(:destination)
       end
-      it 'should have a default format' do
-        expect(subject.format).to eq('jpg')
+      it 'should have a default input format' do
+        expect(subject.input).to eq('jpg')
+      end
+      it 'should have a default output format' do
+        expect(subject.output).to eq('jpg')
       end
     end
     context 'with arguments' do
-      options = { iso: 100, shutter: 125, format: 'exr' }
+      options = { iso: 100, shutter: 125, input: 'exr', output: 'tiff' }
       subject = AppConfig.new(options)
 
       options.each do |key, val|
@@ -28,7 +31,7 @@ RSpec.describe AppConfig do
         end
       end
       it 'overrides an existing option' do
-        expect(subject.format). to eql('exr')
+        expect(subject.input).to eql('exr')
       end
     end
   end
