@@ -14,7 +14,8 @@
 #  $ ln -s config/Guardfile .
 #
 # and, you'll have to watch "config/Guardfile" instead of "Guardfile"
-guard :rspec, cmd: 'rspec' do
+notification :emacs
+guard :rspec, cmd: 'bundle exec rspec' do
   watch(%r{^spec/.+_spec\.rb$})
   watch(%r{^lib/(?<path>.+)\.rb$}) { |m| "spec/lib/#{m[:path]}_spec.rb" }
 end
