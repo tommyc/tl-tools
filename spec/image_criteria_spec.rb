@@ -22,7 +22,6 @@ image = OpenStruct.new(name: 'image1',
                        hour: 12,
                        min: 3)
 
-
 RSpec.describe ImageCriteria do
   subject { ImageCriteria.new(image, config_with_options) }
   describe '#initialize' do

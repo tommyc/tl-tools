@@ -14,8 +14,9 @@ class ImageProcessor # :nodoc:
     @counter = 0
     @config = config_object
   end
+  # rubocop:disable Metrics/AbcSize
 
-  def process
+  def process # rubocop:disable Metrics/MethodLength
     Dir.chdir(config.source)
     dir_list('*').each do |year|
       Dir.chdir(year)

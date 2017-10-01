@@ -18,7 +18,7 @@ opts = GetoptLong.new(
 )
 
 options = {}
-opts.each do |opt, arg|
+opts.each do |opt, arg| # rubocop:disable Metrics/BlockLength
   case opt
   when '--help'
     puts <<~HEREDOC
