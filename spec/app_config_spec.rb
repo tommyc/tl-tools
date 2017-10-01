@@ -31,11 +31,11 @@ RSpec.describe AppConfig do
 
       options.each do |key, val|
         it "responds to #{key} and had the correct value of #{val}" do
-          expect(subject).to respond_to(key.to_sym)
+          expect(subject).to respond_to(key)
           expect(subject.send(key)).to eq(val)
         end
       end
-      it 'overrides an existing option' do
+      it 'overrides a default option' do
         expect(subject.input).to eql('exr')
       end
     end
