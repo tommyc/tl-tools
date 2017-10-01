@@ -23,7 +23,7 @@ RSpec.describe ImageProcessor do
         expect(subject.counter).to eq(1)
       end
       it 'should call save' do
-        expect_any_instance_of(Image).to receive(:save)
+        expect(subject).to receive(:image_save)
         subject.process_image(file)
       end
     end
@@ -37,9 +37,15 @@ RSpec.describe ImageProcessor do
         expect(subject.counter).to eq(0)
       end
       it 'should not call save' do
-        expect_any_instance_of(Image).not_to receive(:save)
+        expect(subject).not_to receive(:image_save)
         subject.process_image(file)
       end
+    end
+  end
+
+  describe '#new_name' do
+    it 'renames the image' do
+      expect(subject.new_name('/foo/', '.jpg', 1)).to eq '/foo/image-000001.jpg'
     end
   end
 end

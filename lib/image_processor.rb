@@ -3,6 +3,7 @@
 require './lib/image'
 require './lib/dir_utils'
 require './lib/image_criteria'
+require 'fileutils'
 
 class ImageProcessor
   include DirUtils
@@ -35,7 +36,17 @@ class ImageProcessor
   def process_image(file)
     image = Image.new(file)
     return unless ImageCriteria.new(image, config).meets_criteria?
-    image.save(file, image.new_name(config.destination, counter))
+    image_save(file, new_name(config.destination, image.ext, counter))
     @counter += 1
+  end
+
+  def image_save(f, new_file)
+    FileUtils.cp(f, new_file)
+  rescue StandardError => e
+    abort "******* #{e.message}"
+  end
+
+  def new_name(dest, ext, counter)
+    "#{dest}image-#{(format '%06d', counter)}#{ext}"
   end
 end

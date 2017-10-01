@@ -10,11 +10,4 @@ RSpec.describe Image do
       expect(subject).to be_instance_of(Image)
     end
   end
-
-  describe '#new_name' do
-    it 'renames the image' do
-      subject = Image.new(image)
-      expect(subject.new_name('/foo/', 1)).to eq '/foo/image-000001.jpg'
-    end
-  end
 end
