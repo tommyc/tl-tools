@@ -3,7 +3,7 @@
 require 'exifr'
 require 'fileutils'
 
-class Image # :nodoc:
+class Image
   attr_reader :iso, :shutter, :hour, :min, :name, :ext
   def initialize(image)
     exif = EXIFR::JPEG.new(image)

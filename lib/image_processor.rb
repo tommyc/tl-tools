@@ -4,7 +4,7 @@ require './lib/image'
 require './lib/dir_utils'
 require './lib/image_criteria'
 
-class ImageProcessor # :nodoc:
+class ImageProcessor
   include DirUtils
 
   attr_accessor :counter

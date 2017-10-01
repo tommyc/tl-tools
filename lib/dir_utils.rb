@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module DirUtils # :nodoc:
+module DirUtils
   def dir_list(dir)
     Dir.glob(dir).map(&File.method(:realpath))
   end

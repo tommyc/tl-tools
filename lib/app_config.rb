@@ -2,7 +2,7 @@
 
 require 'yaml'
 
-class AppConfig # :nodoc:
+class AppConfig
   attr_accessor :source, :destination, :input, :output, :range
 
   def initialize(options = {})

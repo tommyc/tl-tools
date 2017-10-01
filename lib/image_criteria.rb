@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ImageCriteria # :nodoc:
+class ImageCriteria
   attr_reader :image, :config
   def initialize(image, config_object)
     @image = image

@@ -8,3 +8,6 @@ Metrics/BlockLength:
 
 Metrics/BlockLength:
   ExcludedMethods: ['describe', 'context']
+
+Style/Documentation:
+  Enabled: false
