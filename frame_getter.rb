@@ -2,7 +2,7 @@
 require 'exifr'
 require 'fileutils'
 
-SOURCE_DIR = '/Volumes/Media/MediaLibrary/Projects/ApartmentTimeLapse'
+SOURCE_DIR = '/Volumes/MediaBackup/MediaLibrary/Projects/ApartmentTimeLapse'
 DESTINATION_DIR = '/Users/tommy/Projects/timelapse/images/'
 
 Dir.chdir(SOURCE_DIR)

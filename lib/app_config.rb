@@ -1,14 +1,17 @@
+# frozen_string_literal: true
+
 require 'yaml'
 
 class AppConfig # :nodoc:
-  attr_reader :source, :destination, :input, :output
+  attr_accessor :source, :destination, :input, :output, :range
 
   def initialize(options = {})
     config = YAML.load_file('config/config.yml')
     @source = config['source']
     @destination = config['destination']
-    @output = 'jpg'
-    @input = 'jpg'
+    @output = config['output']
+    @input = config['input']
+    @range = config['range']
     process_options(options) unless options.empty?
   end
 

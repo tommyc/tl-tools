@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'app_config'
 
 RSpec.describe AppConfig do
@@ -19,6 +21,9 @@ RSpec.describe AppConfig do
       it 'should have a default output format' do
         expect(subject.output).to eq('jpg')
       end
+      it 'should not respond to options if not given' do
+        expect(subject).not_to respond_to(:foo)
+      end
     end
     context 'with arguments' do
       options = { iso: 100, shutter: 125, input: 'exr', output: 'tiff' }
@@ -27,7 +32,7 @@ RSpec.describe AppConfig do
       options.each do |key, val|
         it "responds to #{key} and had the correct value of #{val}" do
           expect(subject).to respond_to(key.to_sym)
-          expect(subject.send(key)).to eq(options[key.to_sym])
+          expect(subject.send(key)).to eq(val)
         end
       end
       it 'overrides an existing option' do

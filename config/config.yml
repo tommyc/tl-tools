@@ -1,3 +1,6 @@
 ---
-  source: '/Volumes/MediaBackup/MediaLibrary/Projects/ApartmentTimeLapse/2016/10'
+  source: '/Users/tommy/source/tl-tools/spec/fixtures/image_tree'
   destination: '/Users/tommy/Projects/timelapse/images/'
+  input: 'jpg'
+  output: 'jpg'
+  range: [00]
