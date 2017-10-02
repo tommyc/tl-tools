@@ -25,11 +25,13 @@ The images are organized into directories by year, month and day
 
 Basic operation:
 * read config file
+* add in additional options if present
 * call ImageProcessor.process
 * iterate through image directories
 * rename and write out new image if image meets criteria
 
 TODO:
+<<<<<<< HEAD
 <<<<<<< HEAD
 * more refactoring
 * fix failing specs when running `rspec`. specs pass if run individually
@@ -37,6 +39,9 @@ TODO:
 >>>>>>> update readme
 =======
 * more refactoring an cleanup
+=======
+* more refactoring and cleanup
+>>>>>>> misc updates to readme
 * fix failing specs when running `rspec`. specs pass if run individually
 * research picking images based on pixel values instead of exif values
 >>>>>>> update readme
