@@ -17,7 +17,7 @@ RSpec.describe ImageProcessor do
   end
   describe '#process_image' do
     let(:file) { '/Users/tommy/source/tl-tools/spec/images/GOPR2471.jpg' }
-    context 'when meet_criteria? returns true' do
+    context 'when meets_criteria? returns true' do
       it 'should increment @counter' do
         subject.process_image(file)
         expect(subject.counter).to eq(1)
@@ -27,7 +27,7 @@ RSpec.describe ImageProcessor do
         subject.process_image(file)
       end
     end
-    context 'when image meet_criteria? returns false' do
+    context 'when image meets_criteria? returns false' do
       before do
         subject.counter = 0
         config.range = [19, 20]
