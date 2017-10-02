@@ -9,7 +9,7 @@ class Image
     @name = File.basename(image)
     @ext = File.extname(image)
     @iso = exif.iso_speed_ratings
-    @shutter = exif.shutter_speed_value
+    @shutter = exif.shutter_speed_value.denominator
     @hour = exif.date_time.hour
     @min = exif.date_time.min
   end
